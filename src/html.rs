@@ -478,15 +478,15 @@ impl<'o> HtmlFormatter<'o> {
 
                         if self.options.render.github_pre_lang {
                             self.output.write_all(b"<pre lang=\"")?;
-                            self.escape(&ncb.info[..first_tag])?;
+                            self.output.write_all(&ncb.info[..first_tag])?;
                             self.output.write_all(b"\"><code>")?;
                         } else {
                             self.output.write_all(b"<pre><code class=\"language-")?;
-                            self.escape(&ncb.info[..first_tag])?;
+                            self.output.write_all(&ncb.info[..first_tag])?;
                             self.output.write_all(b"\">")?;
                         }
                     }
-                    self.escape(&ncb.literal)?;
+                    self.output.write_all(&ncb.literal)?;
                     self.output.write_all(b"</code></pre>\n")?;
                 }
             }
